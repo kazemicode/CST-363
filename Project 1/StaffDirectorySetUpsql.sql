@@ -18,23 +18,23 @@ USE sd;
 -- create the tables
 CREATE TABLE staff
 (
-  staff_id      INT          	PRIMARY KEY		AUTO_INCREMENT,
-  first_name   	VARCHAR(50),
-  last_name		VARCHAR(50)
+  staff_id      				INT          	PRIMARY KEY		AUTO_INCREMENT,
+  first_name   					VARCHAR(50),
+  last_name						VARCHAR(50)
 );
 
 CREATE TABLE departments
 (
-  department_id       INT            	PRIMARY KEY  AUTO_INCREMENT,
-  department_name     VARCHAR(50)    	NOT NULL	 UNIQUE
+  department_id       			INT            	PRIMARY KEY  	AUTO_INCREMENT,
+  department_name     			VARCHAR(50)    	NOT NULL	 	UNIQUE
 );
 
 
 CREATE TABLE courses
 (
-	course_id		INT			PRIMARY KEY AUTO_INCREMENT,
-    course_title	VARCHAR(60)	NOT NULL 	UNIQUE,
-    department_id	INT			NOT NULL,
+	course_id					INT				PRIMARY KEY 	AUTO_INCREMENT,
+    course_title				VARCHAR(60)		NOT NULL 		UNIQUE,
+    department_id				INT				NOT NULL,
     CONSTRAINT courses_fk_departments
     FOREIGN KEY (department_id)
     REFERENCES departments (department_id)
@@ -42,24 +42,24 @@ CREATE TABLE courses
 
 CREATE TABLE schedules
 (
-  schedule_id                   INT            	PRIMARY KEY   AUTO_INCREMENT,
+  schedule_id                   INT            	PRIMARY KEY   	AUTO_INCREMENT,
   period                  		INT    			NOT NULL,
-  room_number					INT				NOT NULL,
+  room_number					VARCHAR(5)		NOT NULL,
   staff_id						INT				NOT NULL,
   course_id						INT				NOT NULL,
   CONSTRAINT schedules_fk_staff
     FOREIGN KEY (staff_id)
     REFERENCES staff (staff_id),
-      CONSTRAINT schedules_fk_courses
+CONSTRAINT schedules_fk_courses
     FOREIGN KEY (course_id)
     REFERENCES courses (course_id)
 );
 
 CREATE TABLE department_membership
 (
-  dept_member_id        INT            	PRIMARY KEY   AUTO_INCREMENT,
-  staff_id            	INT            	NOT NULL,
-  department_id       	INT    			NOT NULL,
+  dept_member_id        		INT            	PRIMARY KEY   AUTO_INCREMENT,
+  staff_id            			INT            	NOT NULL,
+  department_id       			INT    			NOT NULL,
   CONSTRAINT dm_fk_staff
     FOREIGN KEY (staff_id)
     REFERENCES staff (staff_id),
@@ -107,43 +107,43 @@ INSERT INTO courses VALUES
 (12, "AP United States History", 7);
 
 INSERT INTO schedules VALUES
--- id, period, room number, staffid, courseid)
-(null, 1, 902, 1, 1),
-(null, 2, 902, 1, 4),
-(null, 3, 902, 1, 1),
-(null, 4, 902, 1, 4),
-(null, 5, 902, 1, 5),
-(null, 6, 902, 1, 1),
-(null, 1, 301, 2, 5),
-(null, 2, 301, 2, 3),
-(null, 3, 301, 2, 3),
-(null, 4, 301, 2, 3),
-(null, 5, 301, 2, 4),
-(null, 6, 301, 2, 3),
-(null, 1, 404, 3, 12),
-(null, 2, 404, 3, 5),
-(null, 3, 404, 3, 6),
-(null, 4, 404, 3, 12),
-(null, 5, 404, 3, 12),
-(null, 6, 404, 3, 12),
-(null, 1, 210, 4, 9),
-(null, 2, 210, 4, 9),
-(null, 3, 210, 4, 7),
-(null, 4, 210, 4, 9),
-(null, 5, 210, 4, 7),
-(null, 6, 210, 4, 5),
-(null, 1, 000, 5, 11),
-(null, 2, 000, 5, 10),
-(null, 3, 000, 5, 11),
-(null, 4, 000, 5, 11),
-(null, 5, 000, 5, 5),
-(null, 6, 000, 5, 11),
-(null, 1, 153, 6, 7),
-(null, 2, 153, 6, 7),
-(null, 3, 153, 6, 5),
-(null, 4, 153, 6, 9),
-(null, 5, 153, 6, 7),
-(null, 1, 153, 6, 9);
+-- schedule_id, period, room_number, staff_id, course_id)
+(1, 1, 902, 1, 1),
+(2, 2, 902, 1, 4),
+(3, 3, 902, 1, 1),
+(4, 4, 902, 1, 4),
+(5, 5, 902, 1, 5),
+(6, 6, 902, 1, 1),
+(7, 1, 301, 2, 5),
+(8, 2, 301, 2, 3),
+(9, 3, 301, 2, 3),
+(10, 4, 301, 2, 3),
+(11, 5, 301, 2, 4),
+(12, 6, 301, 2, 3),
+(13, 1, 404, 3, 12),
+(14, 2, 404, 3, 5),
+(15, 3, 404, 3, 6),
+(16, 4, 404, 3, 12),
+(17, 5, 404, 3, 12),
+(18, 6, 404, 3, 12),
+(19, 1, 210, 4, 9),
+(20, 2, 210, 4, 9),
+(21, 3, 210, 4, 7),
+(22, 4, 210, 4, 9),
+(23, 5, 210, 4, 7),
+(24, 6, 210, 4, 5),
+(25, 1, "GYM", 5, 11),
+(26, 2, "GYM", 5, 10),
+(27, 3, "GYM", 5, 11),
+(28, 4, "GYM", 5, 11),
+(29, 5, "GYM", 5, 5),
+(30, 6, "GYM", 5, 11),
+(31, 1, 153, 6, 7),
+(32, 2, 153, 6, 7),
+(33, 3, 153, 6, 5),
+(34, 4, 153, 6, 9),
+(35, 5, 153, 6, 7),
+(36, 1, 153, 6, 9);
 
 INSERT INTO department_membership VALUES
 (1, 1, 7),
